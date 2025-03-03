@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить книгу</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Добавить книгу</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Информация о книге</legend>
+            {{ book_form.as_p }}
+            <p>
+                <a href="{% url 'add_author' %}">Добавить нового автора</a>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Обложка книги</legend>
+            {{ cover_form.as_p }}
+        </fieldset>
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

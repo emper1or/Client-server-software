@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить автора</title>
+     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Добавить автора</h1>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Информация об авторе</legend>
+            <label for="id_name">Имя автора:</label>
+            <input type="text" name="name" id="id_name" required>
+            <label for="id_bio">Биография автора:</label>
+            <textarea name="bio" id="id_bio"></textarea>
+            <p>
+                <a href="{% url 'add_book' %}">Вернуться к добавлению книги</a>
+            </p>
+        </fieldset>
+        <button type="submit">Сохранить</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+/* Общие стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Мягкий градиент */
+    color: #333; /* Темно-серый текст */
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #4a90e2; /* Мягкий синий */
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #4a90e2; /* Мягкий синий */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #357abd; /* Темно-синий при наведении */
+}
+
+/* Стили для форм */
+form {
+    background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    max-width: 500px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* Размытие фона */
+}
+
+form fieldset {
+    border: 1px solid #ddd; /* Светлая рамка */
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+form legend {
+    color: #4a90e2; /* Мягкий синий */
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555; /* Серый текст */
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd; /* Светлая рамка */
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333; /* Темно-серый текст */
+    background-color: #f9f9f9; /* Светлый фон */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #4a90e2; /* Мягкий синий при фокусе */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Мягкое свечение */
+    outline: none;
+}
+
+form textarea {
+    resize: vertical; /* Разрешить изменение высоты текстового поля */
+}
+
+form button {
+    background: linear-gradient(135deg, #4a90e2, #357abd); /* Градиентный фон */
+    color: #fff; /* Белый текст */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form button:hover {
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3); /* Мягкая тень */
+}
+
+/* Стили для сообщений об ошибках */
+.errorlist {
+    color: #ff6b6b; /* Мягкий красный */
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+/* Стили для таблицы (если используется) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    backdrop-filter: blur(10px); /* Размытие фона */
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Светлая рамка */
+    color: #333; /* Темно-серый текст */
+}
+
+table th {
+    background-color: #4a90e2; /* Мягкий синий */
+    color: #fff; /* Белый текст */
+}
+
+table tr:hover {
+    background-color: #f1f1f1; /* Светлый фон при наведении */
+}
+
+/* Стили для личного кабинета */
+.dashboard {
+    background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    max-width: 800px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* Размытие фона */
+}
+
+.dashboard h2 {
+    color: #4a90e2; /* Мягкий синий */
+    margin-bottom: 20px;
+}
+
+.dashboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Светлая рамка */
+    color: #333; /* Темно-серый текст */
+}
+
+.dashboard ul li:last-child {
+    border-bottom: none;
+}
+
+.dashboard ul li:hover {
+    background-color: #f1f1f1; /* Светлый фон при наведении */
+}
