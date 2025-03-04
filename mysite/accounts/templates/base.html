@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Библиотека</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -11,7 +12,7 @@
         <nav>
             {% if user.is_authenticated %}
                 <a href="{% url 'home' %}">Главная страница</a> |
-                <a href="{% url 'dashboard' %}">Личный кабинет</a> |
+                <a href="{% url 'dashboard' request.user.id %}">Личный кабинет</a> |
                 <a href="{% url 'logout' %}">Выйти</a>
             {% else %}
                 <a href="{% url 'home' %}">Главная страница</a> |
@@ -22,6 +23,7 @@
     </header>
     <main>
         {% block content %}{% endblock %}
-    </main>
+    </main>    
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

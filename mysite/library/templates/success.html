@@ -8,6 +8,6 @@
 <body>
     <h1>Данные успешно сохранены!</h1>
     <a href="{% url 'add_book' %}">Добавить еще одну книгу</a>
-    <a href="{% url 'dashboard' %}"> Вернуться в личный кабинет</a>
+    <a href="{% url 'dashboard' request.user.id %}"> Вернуться в личный кабинет</a>
 </body>
 </html>

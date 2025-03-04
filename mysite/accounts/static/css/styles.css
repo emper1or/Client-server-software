@@ -175,3 +175,20 @@ table tr:hover {
 .dashboard ul li:hover {
     background-color: #f1f1f1; /* Светлый фон при наведении */
 }
+
+.password-toggle {
+    position: relative;
+}
+
+.password-toggle i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+.password-toggle i:hover {
+    color: #333;
+}
