@@ -12,7 +12,7 @@
         <nav>
             {% if user.is_authenticated %}
                 <a href="{% url 'home' %}">Главная страница</a> |
-                <a href="{% url 'dashboard' request.user.id %}">Личный кабинет</a> |
+                <a href="{% url 'dashboard' %}">Личный кабинет</a> |
                 <a href="{% url 'logout' %}">Выйти</a>
             {% else %}
                 <a href="{% url 'home' %}">Главная страница</a> |
