@@ -1,10 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import redirect
+from django.shortcuts import render
+from library.models import Book, BookCover
+
 from .forms import RegisterForm
-from .models import CustomUser
-from library.models import Book
+
+
+def anonymous_required(user):
+    return not user.is_authenticated
+
 
 def register(request):
     if request.method == 'POST':
@@ -21,6 +26,7 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 
+@user_passes_test(anonymous_required, login_url='home')
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -41,11 +47,16 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
-    contest = {
-        'user': request.user,
-        'books': Book.objects.all(),
+    user = request.user
+    books = Book.objects.filter(users=user)  # Получаем книги пользователя
+    covers = BookCover.objects.filter(book__in=books)  # Получаем обложки для этих книг
+
+    context = {
+        'user': user,
+        'books': books,
+        'covers': covers,
     }
-    return render(request, 'dashboard.html', contest)
+    return render(request, 'dashboard.html', context)
 
 
 def home(request):
