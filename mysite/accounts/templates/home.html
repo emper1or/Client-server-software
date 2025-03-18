@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Добро пожаловать в библиотеку!</h1>
-{% if user.is_authenticated %}
-    <p>Вы вошли как {{ user.username }}. <a href="{% url 'dashboard' %}">Перейти в личный кабинет</a></p>
-{% else %}
-    <p><a href="{% url 'login' %}">Войти</a> или <a href="{% url 'register' %}">Зарегистрироваться</a></p>
-{% endif %}
+<div class="welcome-container">
+    <h1>Добро пожаловать в библиотеку!</h1>
+    <div class="welcome-text">
+        {% if user.is_authenticated %}
+            <p>Вы вошли как <strong>{{ user.username }}</strong>.</p>
+            <a href="{% url 'dashboard' %}" class="btn">Перейти в личный кабинет</a>
+        {% else %}
+            <p>Присоединяйтесь к нам!</p>
+            <div class="auth-links">
+                <a href="{% url 'login' %}" class="btn">Войти</a>
+                <a href="{% url 'register' %}" class="btn btn-secondary">Зарегистрироваться</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
