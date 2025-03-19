@@ -1,9 +1,9 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>Добавить книгу</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/library/styles.css' %}">
 </head>
 <body>
     <h1>Добавить книгу</h1>
@@ -22,5 +22,6 @@
         </fieldset>
         <button type="submit">Сохранить</button>
     </form>
+    <a href="{% url 'dashboard' %}" class="btn">Назад</a>
 </body>
 </html>

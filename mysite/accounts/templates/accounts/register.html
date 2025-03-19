@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/accounts/login_style.css' %}">
+<h1>Регистрация</h1>
+<form method="post" class="login-form">
+    {% csrf_token %}
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" name="username" id="username" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+
+    <div class="form-group password-toggle">
+        <label for="password1">Пароль:</label>
+        <input type="password" name="password1" id="password1" required>
+        <i class="fa fa-eye" id="togglePassword1"></i>
+    </div>
+
+    <div class="form-group password-toggle">
+        <label for="password2">Подтвердите пароль:</label>
+        <input type="password" name="password2" id="password2" required>
+        <i class="fa fa-eye" id="togglePassword2"></i>
+    </div>
+
+    <button type="submit" class="btn">Зарегистрироваться</button>
+</form>
+<p class="register-link">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+<script src="{% static 'js/accounts/register.js' %}"></script>
+
+{% endblock%}

@@ -1,0 +1,60 @@
+/* profile_style.css */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.profile-info strong {
+    font-weight: 500;
+}
+
+.profile-actions {
+    text-align: center;
+}
+
+.profile-actions .btn {
+    padding: 10px 20px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 5px;
+}
+
+.profile-actions .btn:hover {
+    background: #357abd;
+}
+
+.profile-actions .btn-danger {
+    background: #e74c3c;
+}
+
+.profile-actions .btn-danger:hover {
+    background: #c0392b;
+}

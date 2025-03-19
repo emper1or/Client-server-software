@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/base/base_style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <h1><a href="{% url 'home' %}" style="color: inherit; text-decoration: none;">Библиотека</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">
+                                <i class="fas fa-user"></i> {{ user.username }} <i class="fas fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'profile' %}">Профиль</a>
+                                <a href="{% url 'dashboard' %}">Мои книги</a>
+                                <a href="{% url 'logout' %}">Выйти</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Войти</a></li>
+                        <li><a href="{% url 'register' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <div class="footer-container">
+            <p>Контакты: example@email.com | +7 950 123 45 67</p>
+            <div class="social-links">
+                <a href="https://t.me/K_Vanechka"><i class="fab fa-telegram"></i></a>
+                <a href="https://vk.com/v_a_n_e_ch_k_a"><i class="fab fa-vk"></i></a>
+                <a href="https://github.com/emper1or"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

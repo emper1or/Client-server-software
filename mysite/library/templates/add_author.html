@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Добавить автора</title>
-     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+     <link rel="stylesheet" href="{% static 'css/library/styles.css' %}">
 </head>
 <body>
     <h1>Добавить автора</h1>
@@ -21,6 +21,7 @@
         </fieldset>
         <button type="submit">Сохранить</button>
     </form>
+    <a href="{% url 'add_book' %}" class="btn">Назад</a>
 
 </body>
 </html>

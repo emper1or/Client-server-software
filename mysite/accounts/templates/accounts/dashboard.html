@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="dashboard-container">
+    <link rel="stylesheet" href="{% static 'css/accounts/dashboard_style.css' %}">
     <h1>Личный кабинет</h1>
     <p class="welcome-text">Добро пожаловать, {{ user.username }}!</p>
     <h2>Ваши книги</h2>

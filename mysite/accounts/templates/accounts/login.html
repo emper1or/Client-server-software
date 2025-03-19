@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/accounts/login_style.css' %}">
+<h1>Вход</h1>
+<form method="post" class="login-form">
+    {% csrf_token %}
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" name="username" id="username" required>
+    </div>
+
+    <div class="form-group password-toggle">
+        <label for="password">Пароль:</label>
+        <input type="password" name="password" id="password" required>
+        <i class="fa fa-eye" id="togglePassword"></i>
+    </div>
+
+    <button type="submit" class="btn">Войти</button>
+</form>
+<p class="register-link">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+<script src="{% static 'js/accounts/login.js' %}"></script>
+
+{% endblock %}
