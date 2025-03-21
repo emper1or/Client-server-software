@@ -1,0 +1,60 @@
+/* success_style.css */
+.success-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.success-container h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Отступ между кнопками */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #357abd;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .success-container {
+        padding: 15px;
+    }
+
+    .success-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .button-group {
+        flex-direction: column; /* Кнопки располагаются вертикально на мобильных устройствах */
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px; /* Отступ между кнопками на мобильных устройствах */
+    }
+}
