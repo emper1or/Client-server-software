@@ -26,6 +26,7 @@ class RegisterForm(UserCreationForm):
         self.fields['password2'].help_text = 'Повторите пароль для подтверждения.'
         self.fields['email'].help_text = 'Введите ваш адрес электронной почты.'
 
+
 class PasswordChangeForm(forms.Form):
     old_password = forms.CharField(widget=forms.PasswordInput, label="Старый пароль")
     new_password1 = forms.CharField(widget=forms.PasswordInput, label="Новый пароль")
@@ -40,9 +41,8 @@ class PasswordChangeForm(forms.Form):
             raise forms.ValidationError("Новые пароли не совпадают.")
         return cleaned_data
 
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
-
-

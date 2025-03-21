@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect
 from library.models import Book, BookCover
-from .forms import UserEditForm, PasswordChangeForm
+from .forms import UserEditForm, PasswordChangeForm, RegisterForm
 
 
 def anonymous_required(user):
