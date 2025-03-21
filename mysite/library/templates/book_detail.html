@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="book-detail-container">
+    <link rel="stylesheet" href="{% static 'css/library/book_detail_style.css' %}">
+    <!-- Хлебные крошки -->
+    <nav class="breadcrumb">
+        <a href="{% url 'dashboard' %}">Главная</a> &gt;
+        <span>{{ book.title }}</span>
+    </nav>
+
+    <h2>{{ book.title }}</h2>
+    <div class="book-info">
+        <div class="info-block">
+            <strong>Автор:</strong>
+            <p>{{ book.author.name }}</p>
+        </div>
+        <div class="info-block">
+            <strong>Информация об авторе:</strong>
+            <p>{{ book.author.bio }}</p>
+        </div>
+        <div class="info-block">
+            <strong>Описание:</strong>
+            <p>{{ book.description }}</p>
+        </div>
+    </div>
+    <div class="book-cover">
+        {% for cover in covers %}
+            {% if cover.book == book %}
+                <img src="{{ cover.cover.url }}" alt="Обложка книги {{ book.title }}" class="cover-image" />
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="actions">
+        <a href="{% url 'edit_book' book.id %}" class="btn btn-warning" title="Редактировать книгу">
+            <i class="fas fa-edit"></i> Редактировать
+        </a>
+        <a href="{% url 'delete_book' book.id %}" class="btn btn-danger" title="Удалить книгу">
+            <i class="fas fa-trash"></i> Удалить
+        </a>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary" title="Вернуться к списку книг">
+            <i class="fas fa-arrow-left"></i> Назад к списку
+        </a>
+    </div>
+</div>
+{% endblock %}

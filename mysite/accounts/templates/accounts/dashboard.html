@@ -4,31 +4,25 @@
 {% block content %}
 <div class="dashboard-container">
     <link rel="stylesheet" href="{% static 'css/accounts/dashboard_style.css' %}">
-    <h1>Личный кабинет</h1>
-    <p class="welcome-text">Добро пожаловать, {{ user.username }}!</p>
     <h2>Ваши книги</h2>
     <div class="table-wrapper">
         <table class="book-table">
             <thead>
                 <tr>
                     <th scope="col">Название</th>
-                    <th scope="col">Описание</th>
                     <th scope="col">Автор</th>
-                    <th scope="col">Обложка</th>
+                    <th scope="col">Действия</th>
                 </tr>
             </thead>
             <tbody>
                 {% for book in books %}
                     <tr>
                         <td>{{ book.title }}</td>
-                        <td class="book-description">{{ book.description }}</td>
                         <td>{{ book.author.name }}</td>
                         <td>
-                            {% for cover in covers %}
-                                {% if cover.book == book %}
-                                    <img src="{{ cover.cover.url }}" alt="Обложка книги {{ book.title }}" class="book-cover" />
-                                {% endif %}
-                            {% endfor %}
+                            <a href="{% url 'book_detail' book.id %}" class="btn btn-info">Подробнее</a>
+                            <a href="{% url 'edit_book' book.id %}" class="btn btn-warning">Редактировать</a>
+                            <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Удалить</a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -16,6 +16,7 @@
 .profile-header h1 {
     font-size: 2rem;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .profile-info {
@@ -25,14 +26,17 @@
 .profile-info p {
     margin-bottom: 10px;
     font-size: 1.1rem;
+    color: #555;
 }
 
 .profile-info strong {
     font-weight: 500;
+    color: #333;
 }
 
 .profile-actions {
     text-align: center;
+    margin-top: 20px;
 }
 
 .profile-actions .btn {
@@ -45,6 +49,8 @@
     cursor: pointer;
     transition: background 0.3s;
     margin: 5px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .profile-actions .btn:hover {
@@ -57,4 +63,82 @@
 
 .profile-actions .btn-danger:hover {
     background: #c0392b;
+}
+
+/* Стили для форм редактирования и изменения пароля */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-group input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/* Стили для кнопок в формах */
+.btn-form {
+    width: 100%;
+    padding: 10px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-form:hover {
+    background: #357abd;
+}
+
+/* Стили для кнопки "Назад" */
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #6c757d; /* Серый цвет */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.btn-back:hover {
+    background: #5a6268; /* Темно-серый цвет при наведении */
 }

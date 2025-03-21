@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="edit-book-container">
+    <link rel="stylesheet" href="{% static 'css/library/edit_book_style.css' %}">
+    <h2>Редактировать книгу: {{ book.title }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Форма для книги -->
+        <div class="form-group">
+            <label for="{{ book_form.title.id_for_label }}">Название книги:</label>
+            {{ book_form.title }}
+            {% if book_form.title.errors %}
+            <div class="error-message">{{ book_form.title.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ book_form.description.id_for_label }}">Описание:</label>
+            {{ book_form.description }}
+            {% if book_form.description.errors %}
+            <div class="error-message">{{ book_form.description.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ book_form.author.id_for_label }}">Автор:</label>
+            {{ book_form.author }}
+            {% if book_form.author.errors %}
+            <div class="error-message">{{ book_form.author.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Форма для обложки -->
+        <div class="form-group">
+            <label for="{{ cover_form.cover.id_for_label }}">Обложка:</label>
+            {% if book.bookcover_set.first %}
+                <img src="{{ book.bookcover_set.first.cover.url }}" class="cover-image"  alt="Текущая обложка" />
+            {% else %}
+                <p>Обложка отсутствует.</p>
+            {% endif %}
+            <input type="file" name="{{ cover_form.cover.name }}" id="{{ cover_form.cover.id_for_label }}">
+            {% if cover_form.cover.errors %}
+            <div class="error-message">{{ cover_form.cover.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Кнопки -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a href="{% url 'book_detail' book.id %}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -11,9 +11,27 @@
 
     <form method="post" class="login-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Сохранить изменения</button>
+        <div class="form-group">
+            <label for="id_username">Имя пользователя:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="id_first_name">Имя:</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_last_name">Фамилия:</label>
+            {{ form.last_name }}
+        </div>
+        <button type="submit" class="btn-form">Сохранить изменения</button>
     </form>
+
+    <!-- Кнопка "Назад" -->
+    <a href="{% url 'profile' %}" class="btn-back">Назад</a>
 </div>
 
 {% endblock %}

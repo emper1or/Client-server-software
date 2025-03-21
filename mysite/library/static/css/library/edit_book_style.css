@@ -1,0 +1,127 @@
+/* edit_book_style.css */
+.edit-book-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-book-container h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Отступ между кнопками */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: #4a90e2;
+}
+
+.btn-primary:hover {
+    background: #357abd;
+}
+
+.btn-secondary {
+    background: #6c757d;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+/* Стили для сообщений об ошибках */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .edit-book-container {
+        padding: 15px;
+    }
+
+    .edit-book-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column; /* Кнопки располагаются вертикально на мобильных устройствах */
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px; /* Отступ между кнопками на мобильных устройствах */
+    }
+}
+
+.cover-image {
+        max-width: 800px; /* Максимальная ширина */
+        max-height: 300px; /* Максимальная высота */
+        width: auto; /* Автоматическая ширина для сохранения пропорций */
+        height: auto; /* Автоматическая высота для сохранения пропорций */
+        object-fit: contain; /* Сохраняет пропорции, не искажая изображение */
+    }
+.clearable-file-input {
+    display: none; /* Скрыть текущее значение */
+}
