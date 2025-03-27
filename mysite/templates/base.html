@@ -5,6 +5,90 @@
     <title>Библиотека</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/base/base_style.css' %}">
+    <style>
+        /* Стили для стикеров-уведомлений */
+        .sticker-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sticker {
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+            max-width: 300px;
+            opacity: 0.95;
+        }
+
+        .sticker::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 100%;
+            transform: scaleX(1);
+            transform-origin: left;
+            animation: progress 5s linear forwards;
+        }
+
+        .sticker-success {
+            background-color: #28a745;
+        }
+
+        .sticker-error {
+            background-color: #dc3545;
+        }
+
+        .sticker-info {
+            background-color: #17a2b8;
+        }
+
+        .sticker-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 0.95;
+            }
+        }
+
+        @keyframes progress {
+            to {
+                transform: scaleX(0);
+            }
+        }
+
+        .sticker-close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .sticker-close:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -34,15 +118,6 @@
         </div>
     </header>
     <main>
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-                {% endfor %}
-            </div>
-        {% endif %}
         {% block content %}{% endblock %}
     </main>
     <footer>
@@ -55,5 +130,60 @@
             </div>
         </div>
     </footer>
+
+    <!-- Контейнер для стикеров -->
+    <div class="sticker-container" id="stickerContainer"></div>
+
+    <script>
+        // Функция для отображения стикера
+        function showSticker(message, type) {
+            const container = document.getElementById('stickerContainer');
+            const sticker = document.createElement('div');
+            sticker.className = `sticker sticker-${type}`;
+
+            // Добавляем кнопку закрытия
+            const closeBtn = document.createElement('span');
+            closeBtn.className = 'sticker-close';
+            closeBtn.innerHTML = '&times;';
+            closeBtn.onclick = function() {
+                sticker.remove();
+            };
+
+            sticker.innerHTML = message;
+            sticker.prepend(closeBtn);
+            container.appendChild(sticker);
+
+            // Автоматическое удаление через 5 секунд
+            setTimeout(() => {
+                sticker.style.animation = 'slideOut 0.5s ease-out forwards';
+                setTimeout(() => sticker.remove(), 500);
+            }, 5000);
+        }
+
+        // Проверяем сообщения Django
+        {% if messages %}
+            document.addEventListener('DOMContentLoaded', function() {
+                {% for message in messages %}
+                    showSticker('{{ message }}', '{{ message.tags }}');
+                {% endfor %}
+            });
+        {% endif %}
+
+        // Добавляем анимацию исчезновения
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 0.95;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>

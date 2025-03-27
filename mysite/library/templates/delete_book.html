@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="delete-book-container">
+    <link rel="stylesheet" href="{% static 'css/library/delete_book_style.css' %}">
     <h2>Удаление книги</h2>
     <p>Вы уверены, что хотите удалить книгу <strong>{{ book.title }}</strong>?</p>
     <form method="post">

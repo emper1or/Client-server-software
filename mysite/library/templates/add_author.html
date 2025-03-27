@@ -5,8 +5,14 @@
 <div class="add-author-container">
     <link rel="stylesheet" href="{% static 'css/library/add_author_style.css' %}">
     <h2>Добавить автора</h2>
+
     <form method="post">
         {% csrf_token %}
+
+        <!-- Скрытые поля для передачи данных книги обратно -->
+        <input type="hidden" name="book_title" value="{{ request.GET.book_title }}">
+        <input type="hidden" name="book_description" value="{{ request.GET.book_description }}">
+        <input type="hidden" name="book_author" value="{{ request.GET.book_author }}">
 
         <div class="form-group">
             <label for="id_name">Имя автора:</label>
@@ -19,7 +25,11 @@
         </div>
 
         <button type="submit" class="btn">Сохранить</button>
-        <a href="{% url 'add_book' %}" class="btn">Вернуться к добавлению книги</a>
+
+        <!-- Передаём данные книги обратно в add_book -->
+        <a href="{% url 'add_book' %}?book_title={{ request.GET.book_title }}&book_description={{ request.GET.book_description }}&book_author={{ request.GET.book_author }}&book_rating={{ request.GET.book_rating }}" class="btn">
+            Вернуться к добавлению книги
+        </a>
     </form>
 </div>
 {% endblock %}

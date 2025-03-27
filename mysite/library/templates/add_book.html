@@ -5,14 +5,13 @@
 <div class="add-book-container">
     <link rel="stylesheet" href="{% static 'css/library/add_book_style.css' %}">
     <h2>Добавить книгу</h2>
+
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="form-group">
             <label for="{{ book_form.title.id_for_label }}">Название книги:</label>
-            <div class="input-with-icon">
-                {{ book_form.title }}
-            </div>
+            {{ book_form.title }}
         </div>
 
         <div class="form-group">
@@ -24,8 +23,9 @@
             <label for="{{ book_form.author.id_for_label }}">Автор:</label>
             {{ book_form.author }}
         </div>
+
         <p>
-            <a href="{% url 'add_author' %}" class="add-author-link">Добавить нового автора</a>
+            <button type="submit" name="add_author" class="btn">Добавить нового автора</button>
         </p>
 
         <div class="form-group">

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 
 from .forms import BookForm, BookCoverForm
 from .models import Author, Book, BookCover
@@ -10,9 +11,12 @@ def add_author(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         bio = request.POST.get('bio')
-        if name:  # Проверяем, что имя автора указано
+
+        if name:
             Author.objects.create(name=name, bio=bio)
-            return redirect('add_book')  # Перенаправляем на страницу добавления книги
+            messages.success(request, 'Автор успешно добавлен!')
+            return redirect('add_book')  # Возвращаемся, данные книги уже сохранены
+
     return render(request, 'add_author.html')
 
 
@@ -20,27 +24,36 @@ def add_author(request):
 def add_book(request):
     authors = Author.objects.all()
 
+    # Загружаем данные из сессии, если они есть
+    initial_data = request.session.get('book_form_data', {})
+
     if request.method == 'POST':
+        if 'add_author' in request.POST:
+            # Сохраняем введённые данные в сессию перед переходом
+            request.session['book_form_data'] = request.POST.dict()
+            return redirect('add_author')
+
         book_form = BookForm(request.POST)
         cover_form = BookCoverForm(request.POST, request.FILES)
 
         if book_form.is_valid() and cover_form.is_valid():
-            # Сохраняем книгу, связывая с автором
             book = book_form.save(commit=False)
             book.author = book_form.cleaned_data['author']
             book.save()
 
-            # Добавляем текущего пользователя к книге
             book.users.add(request.user)
 
-            # Сохраняем обложку, связывая с книгой
             cover = cover_form.save(commit=False)
             cover.book = book
             cover.save()
 
-            return redirect('success')  # Перенаправление на страницу успеха
+            # Очищаем сохранённые данные после успешного добавления книги
+            request.session.pop('book_form_data', None)
+
+            messages.success(request, 'Книга успешно добавлена!')
+            return redirect('dashboard')
     else:
-        book_form = BookForm()
+        book_form = BookForm(initial=initial_data)
         cover_form = BookCoverForm()
 
     return render(request, 'add_book.html', {
@@ -48,6 +61,8 @@ def add_book(request):
         'cover_form': cover_form,
         'authors': authors,
     })
+
+
 
 
 @login_required
@@ -105,5 +120,6 @@ def delete_book(request, pk):
             cover.cover.delete()
             cover.delete()
         book.delete()
+        messages.warning(request, f'Книга {book} успешно удалена!')
         return redirect('dashboard')
     return render(request, 'delete_book.html', {'book': book})
