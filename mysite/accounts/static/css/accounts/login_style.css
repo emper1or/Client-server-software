@@ -30,13 +30,25 @@
     position: relative;
 }
 
-.password-toggle i {
+.password-toggle input {
+    width: 100%;
+    padding-right: 40px; /* Оставляем место для иконки */
+}
+
+.password-toggle .eye-wrapper {
     position: absolute;
-    right: 0px;
-    top: 65%;
+    right: 10px;
+    top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.password-toggle i {
     cursor: pointer;
     color: #666;
+    font-size: 1.2rem;
 }
 
 .btn {

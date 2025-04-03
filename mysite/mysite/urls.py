@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('lib/', include('library.urls')),
     path('', include('accounts.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:

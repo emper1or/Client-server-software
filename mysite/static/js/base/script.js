@@ -12,3 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+function refresh_captcha()
+{
+    $.ajax({
+    type:"GET"
+    url: "/captcha_images.php?width=120&height=40&code=$code"?>'
+    success: function(msg)
+   {
+    document.getElementById ("captcha_img").src = msg;
+   },
+error:functon(){alert("some error occured");}
+     });
+
+}
